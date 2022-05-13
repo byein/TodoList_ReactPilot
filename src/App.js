@@ -9,7 +9,7 @@ function App() {
 
   return (
     <div>
-      <ToDoList task={toDoList} />
+      <ToDoList initialTaskList={toDoList} />
     </div>
   );
 }
