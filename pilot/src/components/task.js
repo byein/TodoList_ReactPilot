@@ -5,6 +5,7 @@ import "../styles/task.css";
 export default function Task({
   task: { id, title, complete },
   taskList,
+  setTaskList,
   toggleTask,
   deleteTask,
 }) {

@@ -7,17 +7,18 @@ import data from "../data/data.json";
 
 export default function TaskList({
   taskList,
+  setTaskList,
   toggleTask,
   deleteTask,
   currentFilter,
   filter,
 }) {
-  const [todos, setTodos] = useState(taskList);
-  const [filtered, setFiltered] = useState(taskList);
+  // const [todos, setTodos] = useState(taskList);
+  // const [filtered, setFiltered] = useState(taskList);
 
-  useEffect(() => {
-    setFiltered(todos);
-  }, [todos]);
+  // useEffect(() => {
+  //   setFiltered(todos);
+  // }, [todos]);
 
   return (
     <div className="TaskListWrapper">
@@ -32,12 +33,13 @@ export default function TaskList({
         <tbody>
           <tr className="TaskListRow">
             <td>
-              {taskList.map((task) => {
+              {taskList.map((task, i) => {
                 return (
                   <Task
-                    key={task.id}
+                    key={i}
                     task={task}
                     taskList={taskList}
+                    setTaskList={setTaskList}
                     toggleTask={toggleTask}
                     deleteTask={deleteTask}
                   />
@@ -122,4 +124,9 @@ export default function TaskList({
 
 TaskList.propTypes = {
   taskList: PropTypes.arrayOf(Task.propTypes.task).isRequired,
+  setTaskList: PropTypes.func.isRequired,
+  toggleTask: PropTypes.arrayOf(Task.propTypes.task).isRequired,
+  deleteTask: PropTypes.arrayOf(Task.propTypes.task).isRequired,
+  currentFilter: PropTypes.func.isRequired,
+  filter: PropTypes.string.isRequired,
 };

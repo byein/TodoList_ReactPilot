@@ -11,9 +11,9 @@ import data from "../data/data.json";
 // const initailTaskList = [];
 
 function ToDoList({ initialTaskList }) {
-  const [filter, setFilter] = useState("all");
   const [taskList, setTaskList] = useState(initialTaskList);
   const [filtered, setFiltered] = useState(taskList);
+  const [filter, setFilter] = useState("all");
   useEffect(() => {
     setFiltered(taskList);
   }, [taskList]);
@@ -67,6 +67,7 @@ function ToDoList({ initialTaskList }) {
           <TaskList
             className="TaskListComponentWrapper"
             taskList={filtered}
+            setTaskList={setTaskList}
             toggleTask={toggleTask}
             deleteTask={deleteTask}
             currentFilter={currentFilter}
@@ -79,10 +80,11 @@ function ToDoList({ initialTaskList }) {
 }
 
 ToDoList.propTypes = {
+  initialTaskList: PropTypes.arrayOf(Task.propTypes.task).isRequired,
   taskList: PropTypes.arrayOf(Task.propTypes.task).isRequired,
-  setTaskList: PropTypes.func.isRequired,
-  filtered: PropTypes.arrayOf(Task.propTypes.task).isRequired,
-  setFilteredList: PropTypes.func.isRequired,
+  // setTaskList: PropTypes.func.isRequired,
+  // filtered: PropTypes.arrayOf(Task.propTypes.task).isRequired,
+  // setFilteredList: PropTypes.func.isRequired,
 };
 
 export default ToDoList;
