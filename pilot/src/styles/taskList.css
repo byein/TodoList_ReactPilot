@@ -1,0 +1,195 @@
+.TaskListWrapper {
+    width: 856px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.TaskTable {
+    margin-top: 55px;
+    display: flex;
+    flex-direction: column;
+    padding: 0px;
+    width: 100%;
+    height: fit-content;
+    background: #FFFFFF;
+    border: 1px solid rgba(0, 0, 0, 0.125);
+    border-radius: 4px;
+}
+
+.TableHeader {
+    width: 856px;
+    height: 64px;
+    background: #D8EAE8;
+    border-radius: 4px 4px 0px 0px;
+    margin-bottom: 21px;
+}
+
+
+.TableHeaderRow td {
+    width: 856px;
+    height: 64px;
+    background: #D8EAE8;
+    border-radius: 4px 4px 0px 0px;
+    margin-bottom: 21px;
+}
+
+.TableHeaderTitle {
+    height: 32px;
+    font-family: 'Noto Sans';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 21px;
+    line-height: 150%;
+    padding: 16px 0px 16px 21px;
+    display: flex;
+    align-items: center;
+    justify-self: center;
+    color: #245457;
+
+}
+
+.TaskListRow td {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0px 21px;
+}
+
+.TableFooter {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0px;
+    width: 856px;
+    height: 53px;
+    box-shadow: inset 0px -1px 0px rgba(0, 0, 0, 0.125);
+    flex: none;
+    order: 2;
+    align-self: stretch;
+    flex-grow: 0;
+}
+
+.TableFooterRow {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding: 16px 21px;
+    gap: 4px;
+    width: 856px;
+    height: 53px;
+    border: 2px solid #32C0AF;
+    box-shadow: inset 0px -1px 0px rgba(0, 0, 0, 0.125);
+    border-radius: 0px 0px 4px 4px;
+}
+
+.TaskListCnt {
+    width: 52px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0px;
+    gap: 8px;
+    margin-right: 330px;
+}
+
+.TableFilter {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 0px;
+    gap: 8px;
+    background: rgba(255, 255, 255, 1e-06);
+}
+
+.CheckboxFilter {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    margin-right: 8px;
+    margin-left: 21px;
+    position: relative;
+    display: inline-flex;
+    top: 2px;
+    background-color: #FFFFFF;
+    border: 1px solid #77D9CD;
+    border-radius: 50%;
+    cursor: pointer;
+    width: 16px;
+    height: 16px;
+}
+
+.Round {
+    width: 100%;
+    height: 100%;
+    display: inline-flex;
+    align-items: center;
+    justify-self: center;
+}
+
+.Round .not input[type="checkbox"] {
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    border-radius: 8px;
+    visibility: hidden;
+    color: #FFFFFF;
+}
+
+.Round .checked input[type="checkbox"] {
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    border-radius: 8px;
+    visibility: hidden;
+    color: #FFFFFF;
+}
+
+.Round .not input[type="checkbox"]+span:before {
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    margin-right: 8px;
+    margin-left: 21px;
+    display: flex;
+    background-color: #FFFFFF;
+    border: 1px solid #77D9CD;
+    border-radius: 50%;
+    cursor: pointer;
+    width: 16px;
+    height: 16px;
+}
+
+
+.Round .checked input[type="checkbox"]:checked+span:before {
+    position: absolute;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    color: #FFFFFF;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background-color: #77D9CD;
+    border-color: #77D9CD;
+    font-size: 16px;
+    content: "\2713";
+    text-align: center;
+}
+
+.TableFilterText {
+    font-family: 'Noto Sans';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 19px;
+    display: flex;
+    align-items: center;
+    color: #245457;
+}

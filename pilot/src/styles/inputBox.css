@@ -1,0 +1,95 @@
+.InputBoxTotalWrapperDiv {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 0px;
+    gap: 34px;
+    width: 100%;
+    height: 50px;
+    margin-top: 2px;
+
+}
+
+.InputBoxTotalWrapperForm {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 0px;
+    gap: 34px;
+    width: 856px;
+    height: 50px;
+}
+
+.InputBoxWrapper {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 13px 17px 13px 21px;
+    width: 621px;
+    height: 50px;
+    background: #FFFFFF;
+    border: 1px solid #CED4DA;
+    border-radius: 4px;
+    flex: none;
+    order: 0;
+    flex-grow: 1;
+}
+
+
+.InputBox {
+    width: 555px;
+    height: 24px;
+    font-family: 'Noto Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 150%;
+    display: flex;
+    align-items: center;
+    color: #6C757D;
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+    border: none;
+}
+
+.InputRemoveIcon {
+    cursor: pointer;
+    width: 16px;
+    height: 16px;
+    padding: 17px 17px 17px 3px;
+}
+
+.InputBoxBtn {
+    border: none;
+    cursor: pointer;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    width: 200px;
+    height: 50px;
+    background: #32C0AF;
+    border-radius: 4px;
+}
+
+.InputBoxBtnText {
+    width: 78px;
+    height: 32px;
+    font-family: 'Noto Sans';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 21px;
+    line-height: 160%;
+    display: flex;
+    color: #FFFFFF;
+}
+
+.AddIcon {
+    width: 24px;
+    height: 24px;
+}
