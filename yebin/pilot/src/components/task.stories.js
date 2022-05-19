@@ -17,6 +17,7 @@ Default.args = {
     id: "1",
     title: "Test Task",
     complete: false,
+    edit: false,
   },
 };
 

@@ -12,14 +12,10 @@ export default function TaskList({
   deleteTask,
   currentFilter,
   filter,
+  editTask,
+  getEditTask,
+  saveEditedTask,
 }) {
-  // const [todos, setTodos] = useState(taskList);
-  // const [filtered, setFiltered] = useState(taskList);
-
-  // useEffect(() => {
-  //   setFiltered(todos);
-  // }, [todos]);
-
   return (
     <div className="TaskListWrapper">
       <table className="TaskTable">
@@ -42,6 +38,9 @@ export default function TaskList({
                     setTaskList={setTaskList}
                     toggleTask={toggleTask}
                     deleteTask={deleteTask}
+                    editTask={editTask}
+                    getEditTask={getEditTask}
+                    saveEditedTask={saveEditedTask}
                   />
                 );
               })}
@@ -56,7 +55,7 @@ export default function TaskList({
               <div className="Round">
                 <label
                   className={filter === "all" ? "checked" : "not"}
-                  for="filter"
+                  htmlFor="filter"
                 >
                   <input
                     type={"checkbox"}
@@ -64,6 +63,7 @@ export default function TaskList({
                     name="all"
                     value="all"
                     checked={filter === "all"}
+                    readOnly
                   />
                   <span
                     onClick={() => currentFilter("all")}
@@ -76,7 +76,7 @@ export default function TaskList({
             <td className="TableFilter TableFilterText">
               <div className="Round">
                 <label
-                  for="filter"
+                  htmlFor="filter"
                   className={filter === "onGoing" ? "checked" : "not"}
                 >
                   <input
@@ -85,6 +85,7 @@ export default function TaskList({
                     name="onGoing"
                     value="onGoing"
                     checked={filter === "onGoing"}
+                    readOnly
                   />
                   <span
                     onClick={() => currentFilter("onGoing")}
@@ -97,7 +98,7 @@ export default function TaskList({
             <td className="TableFilter TableFilterText">
               <div className="Round">
                 <label
-                  for="filter"
+                  htmlFor="filter"
                   className={filter === "completed" ? "checked" : "not"}
                 >
                   <input
@@ -106,6 +107,7 @@ export default function TaskList({
                     name="completed"
                     value="completed"
                     checked={filter === "completed"}
+                    readOnly
                   />
                   <span
                     onClick={() => currentFilter("completed")}
@@ -125,8 +127,11 @@ export default function TaskList({
 TaskList.propTypes = {
   taskList: PropTypes.arrayOf(Task.propTypes.task).isRequired,
   setTaskList: PropTypes.func.isRequired,
-  toggleTask: PropTypes.arrayOf(Task.propTypes.task).isRequired,
-  deleteTask: PropTypes.arrayOf(Task.propTypes.task).isRequired,
+  toggleTask: PropTypes.func.isRequired,
+  deleteTask: PropTypes.func.isRequired,
   currentFilter: PropTypes.func.isRequired,
   filter: PropTypes.string.isRequired,
+  editTask: PropTypes.func.isRequired,
+  getEditTask: PropTypes.func.isRequired,
+  saveEditedTask: PropTypes.func.isRequired,
 };

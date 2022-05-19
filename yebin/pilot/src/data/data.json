@@ -2,33 +2,39 @@
   {
     "id": 0,
     "title": "Fill gas tank",
-    "complete": false
+    "complete": false,
+    "edit": false
   },
   {
     "id": 1,
     "title": "Give dog a bath",
-    "complete": true
+    "complete": true,
+    "edit": false
   },
   {
     "id": 2,
     "title": "Do laundry",
-    "complete": true
+    "complete": true,
+    "edit": false
   },
   {
     "id": 3,
     "title": "Vacuum floor",
-    "complete": false
+    "complete": false,
+    "edit": false
   },
   {
     "id": 4,
     "state": "TASK_ARCHIVED",
     "title": "Feed cat",
-    "complete": true
+    "complete": true,
+    "edit": false
   },
   {
     "id": 5,
     "title": "Change light bulbs",
-    "complete": false
+    "complete": false,
+    "edit": false
   },
   {
     "id": 6,
@@ -38,66 +44,79 @@
   {
     "id": 7,
     "title": "Fill gas tank",
-    "complete": true
+    "complete": true,
+    "edit": false
   },
   {
     "id": 8,
     "title": "Change linens",
-    "complete": false
+    "complete": false,
+    "edit": false
   },
   {
     "id": 9,
     "title": "Rake leaves",
-    "complete": true
+    "complete": true,
+    "edit": false
   },
   {
     "id": 10,
     "title": "Bake Cookies",
-    "complete": false
+    "complete": false,
+    "edit": false
   },
   {
     "id": 11,
     "title": "Take nap",
-    "complete": true
+    "complete": true,
+    "edit": false
   },
   {
     "id": 12,
     "title": "Read book",
-    "complete": true
+    "complete": true,
+    "edit": false
   },
   {
     "id": 13,
     "title": "Exercise",
-    "complete": false
+    "complete": false,
+    "edit": false
   },
   {
     "id": 14,
     "title": "Give dog a bath",
-    "complete": false
+    "complete": false,
+    "edit": false
   },
   {
     "id": 15,
     "title": "Do laundry",
-    "complete": false
+    "complete": false,
+    "edit": false
   },
   {
     "id": 16,
     "title": "Vacuum floor",
-    "complete": false
+    "complete": false,
+    "edit": false
   },
   {
     "id": 17,
     "title": "Feed cat",
-    "complete": true
+    "complete": true,
+    "edit": false
   },
   {
     "id": 18,
     "title": "Change light bulbs",
-    "complete": false
+    "complete": false,
+    "edit": false
   },
   {
     "id": 19,
     "title": "Go to Store",
-    "complete": false
+    "complete": false,
+    "edit": false
   }
 ]

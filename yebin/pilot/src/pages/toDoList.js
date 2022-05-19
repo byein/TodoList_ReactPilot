@@ -8,8 +8,6 @@ import TaskList from "../components/taskList";
 import Task from "../components/task";
 import data from "../data/data.json";
 
-// const initailTaskList = [];
-
 function ToDoList({ initialTaskList }) {
   const [taskList, setTaskList] = useState(initialTaskList);
   const [filtered, setFiltered] = useState(taskList);
@@ -18,6 +16,52 @@ function ToDoList({ initialTaskList }) {
     setFiltered(taskList);
   }, [taskList]);
 
+  // edit task function (if double clicked, change edit prop)
+  const editTask = (cuurentTask) => {
+    console.log("double clicked");
+    console.log(cuurentTask);
+    const editTask = taskList.map((task) => {
+      if (task.id === cuurentTask) {
+        return {
+          ...task,
+          edit: !task.edit,
+        };
+      }
+      return task;
+    });
+    setTaskList(editTask);
+  };
+
+  // get edit task function (get the edited task title, setTaskList)
+  const getEditTask = (taskId, getEditedTask) => {
+    const editTask = taskList.map((task) => {
+      if (task.id === taskId) {
+        return {
+          ...task,
+          title: getEditedTask,
+          edit: true,
+        };
+      }
+      return task;
+    });
+    setTaskList(editTask);
+  };
+
+  // save edited task function (edit is false, cannot edit while there's no double click)
+  const saveEditedTask = (currentTask) => {
+    const saveEditedTask = taskList.map((task) => {
+      if (task.id === currentTask.id) {
+        return {
+          ...task,
+          edit: false,
+        };
+      }
+      return task;
+    });
+    setTaskList(saveEditedTask);
+  };
+
+  // toggleTask function (change the status ongoing or complete)
   const toggleTask = (selectedTask) => {
     const newTaskList = taskList.map((task) => {
       if (task === selectedTask) {
@@ -30,6 +74,8 @@ function ToDoList({ initialTaskList }) {
     });
     setTaskList(newTaskList);
   };
+
+  // deleteTask function (delete task from the list)
   const deleteTask = (currentTask) => {
     const removedList = taskList.filter((t) => t.id !== currentTask);
     for (let i = 0; i < removedList.length; i++) {
@@ -38,6 +84,7 @@ function ToDoList({ initialTaskList }) {
     setTaskList(removedList);
   };
 
+  // currentFilter function (find current filter, and set filter and filtered tasklist)
   const currentFilter = (filterTask) => {
     let activeFilter = filterTask;
     switch (activeFilter) {
@@ -72,6 +119,9 @@ function ToDoList({ initialTaskList }) {
             deleteTask={deleteTask}
             currentFilter={currentFilter}
             filter={filter}
+            editTask={editTask}
+            getEditTask={getEditTask}
+            saveEditedTask={saveEditedTask}
           />
         </div>
       </section>
@@ -81,7 +131,7 @@ function ToDoList({ initialTaskList }) {
 
 ToDoList.propTypes = {
   initialTaskList: PropTypes.arrayOf(Task.propTypes.task).isRequired,
-  taskList: PropTypes.arrayOf(Task.propTypes.task).isRequired,
+  taskList: PropTypes.arrayOf(Task.propTypes.task),
   // setTaskList: PropTypes.func.isRequired,
   // filtered: PropTypes.arrayOf(Task.propTypes.task).isRequired,
   // setFilteredList: PropTypes.func.isRequired,

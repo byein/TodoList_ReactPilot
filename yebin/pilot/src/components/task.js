@@ -1,14 +1,35 @@
-import React, { useCallback } from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import "../styles/task.css";
 
 export default function Task({
-  task: { id, title, complete },
+  task: { id, title, complete, edit },
   taskList,
   setTaskList,
   toggleTask,
   deleteTask,
+  editTask,
+  getEditTask,
+  saveEditedTask,
 }) {
+  const [editTitle, setEditTitle] = useState(title);
+
+  // onChange function for update input value
+  const onChangeInput = (id, getEditedTask) => {
+    setEditTitle(getEditedTask);
+    getEditTask(id, getEditedTask);
+  };
+
+  // if enter key is pressed, save edited task
+  const onKeyPress = (e) => {
+    if (e.key === "Enter") {
+      saveEditedTask(e.target.value);
+
+      console.log("Entered");
+      console.log(e.target.value);
+    }
+  };
+
   return (
     <div className="ListItemWrapper">
       <div className={`ListItem ${complete}`}>
@@ -21,7 +42,6 @@ export default function Task({
             checked={complete}
             onChange={() => toggleTask(taskList[id])}
             onClick={() => toggleTask(taskList[id])}
-            defaultChecked={complete === true}
             name="checked"
             id={id}
           />
@@ -35,9 +55,14 @@ export default function Task({
             checked={complete}
             className="TaskTitleText"
             type="text"
-            value={title}
-            readOnly={true}
+            value={editTitle}
+            readOnly={!edit}
             placeholder="Input title"
+            onDoubleClick={() => {
+              editTask(id);
+            }}
+            onChange={(e) => onChangeInput(id, e.target.value)}
+            onKeyPress={onKeyPress}
           />
         </label>
 
@@ -62,12 +87,14 @@ Task.propTypes = {
     id: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
     complete: PropTypes.bool,
+    edit: PropTypes.bool,
   }),
   taskList: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number.isRequired,
       title: PropTypes.string.isRequired,
-      complete: PropTypes.bool.isRequired,
+      complete: PropTypes.bool,
+      edit: PropTypes.bool,
     }).isRequired
   ),
 };
