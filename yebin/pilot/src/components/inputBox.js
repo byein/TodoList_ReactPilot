@@ -7,14 +7,18 @@ const InputBox = ({ taskList, setTaskList }) => {
   const [title, setTitle] = useState("");
   const inputRef = useRef(null);
 
+  // onChange function for input
   const onChangeInput = (e) => {
     setTitle(e.target.value);
   };
 
+  // cancel add task (mark x)
   const cancelAddTask = () => {
     setTitle("");
   };
 
+  // Add task
+  // onClick function for add button
   const onClickAddBtn = (e) => {
     e.preventDefault();
     id = taskList.length;
@@ -25,6 +29,7 @@ const InputBox = ({ taskList, setTaskList }) => {
       complete: false,
     };
 
+    // if there is no new task, don't add task
     if (title.length === 0) {
       return;
     } else {
@@ -35,6 +40,7 @@ const InputBox = ({ taskList, setTaskList }) => {
     console.log(taskList);
     setTitle("");
   };
+
   useEffect(() => {
     console.log(taskList);
   }, [taskList]);
@@ -75,7 +81,8 @@ InputBox.propTypes = {
     PropTypes.shape({
       id: PropTypes.number.isRequired,
       title: PropTypes.string.isRequired,
-      complete: PropTypes.bool.isRequired,
+      complete: PropTypes.bool,
+      edit: PropTypes.bool,
     }).isRequired
   ),
   setTaskList: PropTypes.func.isRequired,
