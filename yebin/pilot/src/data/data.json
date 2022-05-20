@@ -25,7 +25,6 @@
   },
   {
     "id": 4,
-    "state": "TASK_ARCHIVED",
     "title": "Feed cat",
     "complete": true,
     "edit": false
@@ -39,7 +38,8 @@
   {
     "id": 6,
     "title": "Go to Store",
-    "complete": true
+    "complete": true,
+    "edit": false
   },
   {
     "id": 7,

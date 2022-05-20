@@ -12,9 +12,22 @@ function ToDoList({ initialTaskList }) {
   const [taskList, setTaskList] = useState(initialTaskList);
   const [filtered, setFiltered] = useState(taskList);
   const [filter, setFilter] = useState("all");
+
+  // toggle during filtering doesn't work well...
   useEffect(() => {
-    setFiltered(taskList);
-  }, [taskList]);
+    console.log(filter);
+    console.log(taskList);
+    if (filter === "completed") {
+      setFiltered(taskList.filter((t) => t.complete === true));
+    } else if (filter === "onGoing") {
+      setFiltered(taskList.filter((t) => t.complete === false));
+    } else {
+      setFiltered(taskList);
+    }
+  }, [filter, taskList]);
+  // useEffect(() => {
+  //   setFiltered(taskList);
+  // }, [taskList]);
 
   // edit task function (if double clicked, change edit prop)
   const editTask = (cuurentTask) => {
@@ -63,6 +76,7 @@ function ToDoList({ initialTaskList }) {
 
   // toggleTask function (change the status ongoing or complete)
   const toggleTask = (selectedTask) => {
+    setFiltered(taskList);
     const newTaskList = taskList.map((task) => {
       if (task === selectedTask) {
         return {
@@ -72,7 +86,18 @@ function ToDoList({ initialTaskList }) {
       }
       return task;
     });
+    console.log(filter);
+    console.log(selectedTask);
+
     setTaskList(newTaskList);
+
+    if (filter === "completed") {
+      setFiltered(taskList.filter((t) => t.complete));
+    } else if (filter === "onGoing") {
+      setFiltered(taskList.filter((t) => !t.complete));
+    } else {
+      setFiltered(taskList);
+    }
   };
 
   // deleteTask function (delete task from the list)
@@ -89,10 +114,10 @@ function ToDoList({ initialTaskList }) {
   const currentFilter = (filterTask) => {
     let activeFilter = filterTask;
     switch (activeFilter) {
-      case "all":
-        setFiltered(taskList);
-        setFilter("all");
-        return;
+      // case "all":
+      //   setFiltered(taskList);
+      //   setFilter("all");
+      //   return;
       case "completed":
         setFiltered(taskList.filter((t) => t.complete));
         setFilter("completed");
@@ -102,8 +127,10 @@ function ToDoList({ initialTaskList }) {
         setFilter("onGoing");
         return;
       default:
+        setFiltered(taskList);
         setFilter("all");
         console.log("Default");
+        return;
     }
   };
   return (
