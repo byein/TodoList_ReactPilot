@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect, createRef } from "react";
 import PropTypes from "prop-types";
 import "../styles/task.css";
 
@@ -24,9 +24,29 @@ export default function Task({
   const onKeyPress = (e) => {
     if (e.key === "Enter") {
       saveEditedTask(e.target.value);
+      e.target.blur();
 
       console.log("Entered");
       console.log(e.target.value);
+    }
+  };
+
+  // handleClick function(when update, manage the focus on double click not on single click)
+  const handleClick = (e) => {
+    switch (e.detail) {
+      case 1:
+        console.log("click");
+        e.preventDefault();
+        e.stopPropagation();
+        break;
+      case 2:
+        console.log("double click");
+        // editTask(id);
+        break;
+      default:
+        e.target.blur();
+
+        return;
     }
   };
 
@@ -55,7 +75,7 @@ export default function Task({
             checked={complete}
             className="TaskTitleText"
             type="text"
-            value={editTitle}
+            value={title}
             readOnly={!edit}
             placeholder="Input title"
             onDoubleClick={() => {
@@ -63,6 +83,9 @@ export default function Task({
             }}
             onChange={(e) => onChangeInput(id, e.target.value)}
             onKeyPress={onKeyPress}
+            onClick={handleClick}
+            onMouseDown={handleClick}
+            // onKeyDown={onKeyPress}
           />
         </label>
 
