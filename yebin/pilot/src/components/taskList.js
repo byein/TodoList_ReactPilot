@@ -29,21 +29,27 @@ export default function TaskList({
         <tbody>
           <tr className="TaskListRow">
             <td>
-              {taskList.map((task, i) => {
-                return (
-                  <Task
-                    key={i}
-                    task={task}
-                    taskList={taskList}
-                    setTaskList={setTaskList}
-                    toggleTask={toggleTask}
-                    deleteTask={deleteTask}
-                    editTask={editTask}
-                    getEditTask={getEditTask}
-                    saveEditedTask={saveEditedTask}
-                  />
-                );
-              })}
+              {
+                // show the taskList descending id(sort by recently), index reverse
+                taskList
+                  .slice(0)
+                  .reverse()
+                  .map((task, i) => {
+                    return (
+                      <Task
+                        key={i}
+                        task={task}
+                        taskList={taskList}
+                        setTaskList={setTaskList}
+                        toggleTask={toggleTask}
+                        deleteTask={deleteTask}
+                        editTask={editTask}
+                        getEditTask={getEditTask}
+                        saveEditedTask={saveEditedTask}
+                      />
+                    );
+                  })
+              }
             </td>
           </tr>
         </tbody>
