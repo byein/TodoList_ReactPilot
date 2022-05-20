@@ -24,7 +24,7 @@ function ToDoList({ initialTaskList }) {
       if (task.id === cuurentTask) {
         return {
           ...task,
-          edit: !task.edit,
+          edit: true,
         };
       }
       return task;
@@ -77,6 +77,7 @@ function ToDoList({ initialTaskList }) {
 
   // deleteTask function (delete task from the list)
   const deleteTask = (currentTask) => {
+    console.log(currentTask);
     const removedList = taskList.filter((t) => t.id !== currentTask);
     for (let i = 0; i < removedList.length; i++) {
       removedList[i].id = i;
