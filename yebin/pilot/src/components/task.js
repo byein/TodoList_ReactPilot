@@ -68,7 +68,7 @@ export default function Task({
           <span
             className="CheckboxCustom"
             onClick={() => {
-              toggleTask(taskList[id]);
+              toggleTask(id);
             }}
           />
           <input

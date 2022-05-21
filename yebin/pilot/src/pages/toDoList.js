@@ -77,10 +77,10 @@ function ToDoList({ initialTaskList }) {
   };
 
   // toggleTask function (change the status ongoing or complete)
-  const toggleTask = (selectedTask) => {
+  const toggleTask = (selectedTaskId) => {
     // setFiltered(taskList);
     const newTaskList = taskList.map((task) => {
-      if (task === selectedTask) {
+      if (task.id === selectedTaskId) {
         return {
           ...task,
           complete: !task.complete,
@@ -89,17 +89,9 @@ function ToDoList({ initialTaskList }) {
       return task;
     });
     console.log(filter);
-    console.log(selectedTask);
+    console.log(selectedTaskId);
 
     setTaskList(newTaskList);
-
-    if (filter === "completed") {
-      setFiltered(taskList.filter((t) => t.complete));
-    } else if (filter === "onGoing") {
-      setFiltered(taskList.filter((t) => !t.complete));
-    } else {
-      setFiltered(taskList);
-    }
   };
 
   // deleteTask function (delete task from the list)
