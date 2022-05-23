@@ -1,21 +1,31 @@
 import React, { useEffect, useState } from "react";
-import Task from "./task";
+import { Task } from "./task";
 import PropTypes from "prop-types";
 
 import "../styles/taskList.css";
 import data from "../data/data.json";
 
-export default function TaskList({
+export interface TaskListProps {
+  taskList: Array<Task>;
+  toggleTask: ToggleTask;
+  deleteTask: DeleteTask;
+  editTask: EditTask;
+  getEditText: GetEditText;
+  saveEditedTask: SaveEditedTask;
+  currentFilter: CurrentFilter;
+  filter: string;
+}
+
+export const TaskList: React.FC<TaskListProps> = ({
   taskList,
-  setTaskList,
   toggleTask,
   deleteTask,
   currentFilter,
   filter,
   editTask,
-  getEditTask,
+  getEditText,
   saveEditedTask,
-}) {
+}) => {
   return (
     <div className="TaskListWrapper">
       <table className="TaskTable">
@@ -40,11 +50,13 @@ export default function TaskList({
                         key={i}
                         task={task}
                         taskList={taskList}
-                        setTaskList={setTaskList}
+                        // setTaskList={setTaskList}
+                        // currentFilter={currentFilter}
+                        // filter={filter}
                         toggleTask={toggleTask}
                         deleteTask={deleteTask}
                         editTask={editTask}
-                        getEditTask={getEditTask}
+                        getEditText={getEditText}
                         saveEditedTask={saveEditedTask}
                       />
                     );
@@ -128,16 +140,16 @@ export default function TaskList({
       </table>
     </div>
   );
-}
-
-TaskList.propTypes = {
-  taskList: PropTypes.arrayOf(Task.propTypes.task).isRequired,
-  setTaskList: PropTypes.func.isRequired,
-  toggleTask: PropTypes.func.isRequired,
-  deleteTask: PropTypes.func.isRequired,
-  currentFilter: PropTypes.func.isRequired,
-  filter: PropTypes.string.isRequired,
-  editTask: PropTypes.func.isRequired,
-  getEditTask: PropTypes.func.isRequired,
-  saveEditedTask: PropTypes.func.isRequired,
 };
+
+// TaskList.propTypes = {
+//   taskList: PropTypes.arrayOf(Task.propTypes.task).isRequired,
+//   setTaskList: PropTypes.func.isRequired,
+//   toggleTask: PropTypes.func.isRequired,
+//   deleteTask: PropTypes.func.isRequired,
+//   currentFilter: PropTypes.func.isRequired,
+//   filter: PropTypes.string.isRequired,
+//   editTask: PropTypes.func.isRequired,
+//   getEditTask: PropTypes.func.isRequired,
+//   saveEditedTask: PropTypes.func.isRequired,
+// };

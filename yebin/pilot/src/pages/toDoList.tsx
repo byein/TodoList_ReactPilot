@@ -4,11 +4,18 @@ import Header from "../components/header";
 import "../App.css";
 import PropTypes from "prop-types";
 import InputBox from "../components/inputBox";
-import TaskList from "../components/taskList";
-import Task from "../components/task";
+import { TaskList } from "../components/taskList";
+import { Task } from "../components/task";
 import data from "../data/data.json";
 
-function ToDoList({ initialTaskList }) {
+const initialTaskList: Array<Task> = data;
+// interface ToDoListProps {
+//   // initialTaskList: Array<Task>;
+//   taskList: Array<Task>;
+//   className?: string;
+// }
+let id = 0;
+const ToDoList: React.FC = () => {
   const [taskList, setTaskList] = useState(initialTaskList);
   const [filtered, setFiltered] = useState(taskList);
   const [filter, setFilter] = useState("all");
@@ -32,11 +39,11 @@ function ToDoList({ initialTaskList }) {
   // }, [taskList]);
 
   // edit task function (if double clicked, change edit prop)
-  const editTask = (cuurentTask) => {
+  const editTask: EditTask = (cuurentTask) => {
     console.log("double clicked");
     console.log(cuurentTask);
     const editTask = taskList.map((task) => {
-      if (task.id === cuurentTask) {
+      if (task === cuurentTask) {
         return {
           ...task,
           edit: true,
@@ -48,7 +55,7 @@ function ToDoList({ initialTaskList }) {
   };
 
   // get edit task function (get the edited task title, setTaskList)
-  const getEditTask = (taskId, getEditedTask) => {
+  const getEditText: GetEditText = (taskId, getEditedTask) => {
     const editTask = taskList.map((task) => {
       if (task.id === taskId) {
         return {
@@ -63,7 +70,7 @@ function ToDoList({ initialTaskList }) {
   };
 
   // save edited task function (edit is false, cannot edit while there's no double click)
-  const saveEditedTask = (currentTask) => {
+  const saveEditedTask: SaveEditedTask = (currentTask) => {
     const saveEditedTask = taskList.map((task) => {
       if (task.id === currentTask.id) {
         return {
@@ -77,10 +84,10 @@ function ToDoList({ initialTaskList }) {
   };
 
   // toggleTask function (change the status ongoing or complete)
-  const toggleTask = (selectedTaskId) => {
+  const toggleTask: ToggleTask = (selectedTaskId) => {
     // setFiltered(taskList);
     const newTaskList = taskList.map((task) => {
-      if (task.id === selectedTaskId) {
+      if (task === selectedTaskId) {
         return {
           ...task,
           complete: !task.complete,
@@ -95,9 +102,9 @@ function ToDoList({ initialTaskList }) {
   };
 
   // deleteTask function (delete task from the list)
-  const deleteTask = (currentTask) => {
+  const deleteTask: DeleteTask = (currentTask) => {
     console.log(currentTask);
-    const removedList = taskList.filter((t) => t.id !== currentTask);
+    const removedList = taskList.filter((t) => t !== currentTask);
     for (let i = 0; i <= removedList.length - 1; i++) {
       removedList[i].id = i;
     }
@@ -105,7 +112,7 @@ function ToDoList({ initialTaskList }) {
   };
 
   // currentFilter function (find current filter, and set filter and filtered tasklist)
-  const currentFilter = (filterTask) => {
+  const currentFilter: CurrentFilter = (filterTask) => {
     let activeFilter = filterTask;
     switch (activeFilter) {
       // case "all":
@@ -134,29 +141,29 @@ function ToDoList({ initialTaskList }) {
         <InputBox taskList={taskList} setTaskList={setTaskList} />
         <div className="TaskListSection">
           <TaskList
-            className="TaskListComponentWrapper"
+            // className="TaskListComponentWrapper"
             taskList={filtered}
-            setTaskList={setTaskList}
+            // setTaskList={setTaskList}
             toggleTask={toggleTask}
             deleteTask={deleteTask}
             currentFilter={currentFilter}
             filter={filter}
             editTask={editTask}
-            getEditTask={getEditTask}
+            getEditText={getEditText}
             saveEditedTask={saveEditedTask}
           />
         </div>
       </section>
     </div>
   );
-}
-
-ToDoList.propTypes = {
-  initialTaskList: PropTypes.arrayOf(Task.propTypes.task).isRequired,
-  taskList: PropTypes.arrayOf(Task.propTypes.task),
-  // setTaskList: PropTypes.func.isRequired,
-  // filtered: PropTypes.arrayOf(Task.propTypes.task).isRequired,
-  // setFilteredList: PropTypes.func.isRequired,
 };
+
+// ToDoList.propTypes = {
+//   initialTaskList: PropTypes.arrayOf(Task.propTypes.task).isRequired,
+//   taskList: PropTypes.arrayOf(Task.propTypes.task),
+//   // setTaskList: PropTypes.func.isRequired,
+//   // filtered: PropTypes.arrayOf(Task.propTypes.task).isRequired,
+//   // setFilteredList: PropTypes.func.isRequired,
+// };
 
 export default ToDoList;

@@ -1,14 +1,24 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, {
+  ChangeEvent,
+  FormEvent,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import PropTypes from "prop-types";
 import "../styles/inputBox.css";
 
 let id = 0;
-const InputBox = ({ taskList, setTaskList }) => {
+interface InputBoxProps {
+  taskList: Array<Task>;
+  setTaskList: Function;
+}
+const InputBox: React.FC<InputBoxProps> = ({ taskList, setTaskList }) => {
   const [title, setTitle] = useState("");
   const inputRef = useRef(null);
 
   // onChange function for input
-  const onChangeInput = (e) => {
+  const onChangeInput = (e: ChangeEvent<HTMLInputElement>) => {
     setTitle(e.target.value);
   };
 
@@ -19,7 +29,7 @@ const InputBox = ({ taskList, setTaskList }) => {
 
   // Add task
   // onClick function for add button
-  const onClickAddBtn = (e) => {
+  const onClickAddBtn = (e: FormEvent<HTMLButtonElement>) => {
     e.preventDefault();
     id = taskList.length;
     const nextTaskList = {
@@ -34,7 +44,7 @@ const InputBox = ({ taskList, setTaskList }) => {
       return;
     } else {
       setTaskList([...taskList, nextTaskList]);
-      inputRef.current.focus();
+      // inputRef.current.focus();
     }
     console.log(title);
     console.log(taskList);
@@ -76,16 +86,16 @@ const InputBox = ({ taskList, setTaskList }) => {
 };
 
 // props 값 검증
-InputBox.propTypes = {
-  taskList: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      title: PropTypes.string.isRequired,
-      complete: PropTypes.bool,
-      edit: PropTypes.bool,
-    }).isRequired
-  ),
-  setTaskList: PropTypes.func.isRequired,
-};
+// InputBox.propTypes = {
+//   taskList: PropTypes.arrayOf(
+//     PropTypes.shape({
+//       id: PropTypes.number.isRequired,
+//       title: PropTypes.string.isRequired,
+//       complete: PropTypes.bool,
+//       edit: PropTypes.bool,
+//     }).isRequired
+//   ),
+//   setTaskList: PropTypes.func.isRequired,
+// };
 
 export default InputBox;

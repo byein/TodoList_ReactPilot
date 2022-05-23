@@ -1,20 +1,20 @@
 // src/components/Task.stories.js
 
 import React from "react";
-
-import Task from "./task";
+import { Meta, Story } from "@storybook/react";
+import { Task, TaskProps } from "./task";
 
 export default {
   component: Task,
   title: "Task",
-};
+} as Meta;
 
-const Template = (args) => <Task style={{ padding: "3rem" }} {...args} />;
+const Template: Story<TaskProps> = (args) => <Task {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {
   task: {
-    id: "1",
+    id: 1,
     title: "Test Task",
     complete: false,
     edit: false,
@@ -24,7 +24,9 @@ Default.args = {
 export const Archived = Template.bind({});
 Archived.args = {
   task: {
-    ...Default.args.task,
+    id: 1,
+    title: "Test Task",
+    edit: false,
     complete: true,
   },
 };
