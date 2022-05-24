@@ -15,19 +15,25 @@ const initialTaskList: Array<Task> = data;
 //   className?: string;
 // }
 let id = 0;
+enum Filter {
+  all = "all",
+  completed = "completed",
+  ongoing = "onGoing",
+}
+
 const ToDoList: React.FC = () => {
   const [taskList, setTaskList] = useState(initialTaskList);
   const [filtered, setFiltered] = useState(taskList);
-  const [filter, setFilter] = useState("all");
+  const [filter, setFilter] = useState(Filter.all);
 
   // toggle during filtering doesn't work well...
   useEffect(() => {
     console.log(filter);
     console.log(taskList);
-    if (filter === "completed") {
+    if (filter === Filter.completed) {
       const completedTaskList = taskList.filter((t) => t.complete === true);
       setFiltered(completedTaskList);
-    } else if (filter === "onGoing") {
+    } else if (filter === Filter.ongoing) {
       const onGoingTaskList = taskList.filter((t) => t.complete === false);
       setFiltered(onGoingTaskList);
     } else {
@@ -119,18 +125,17 @@ const ToDoList: React.FC = () => {
       //   setFiltered(taskList);
       //   setFilter("all");
       //   return;
-      case "completed":
+      case Filter.completed:
         setFiltered(taskList.filter((t) => t.complete));
-        setFilter("completed");
+        setFilter(Filter.completed);
         return;
-      case "onGoing":
+      case Filter.ongoing:
         setFiltered(taskList.filter((t) => !t.complete));
-        setFilter("onGoing");
+        setFilter(Filter.ongoing);
         return;
       default:
         setFiltered(taskList);
-        setFilter("all");
-        console.log("Default");
+        setFilter(Filter.all);
         return;
     }
   };
