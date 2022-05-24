@@ -39,11 +39,11 @@ const ToDoList: React.FC = () => {
   // }, [taskList]);
 
   // edit task function (if double clicked, change edit prop)
-  const editTask: EditTask = (cuurentTask) => {
+  const editTask: EditTask = (currentTask) => {
     console.log("double clicked");
-    console.log(cuurentTask);
+    console.log(currentTask);
     const editTask = taskList.map((task) => {
-      if (task === cuurentTask) {
+      if (task === currentTask) {
         return {
           ...task,
           edit: true,
