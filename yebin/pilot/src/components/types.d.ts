@@ -5,17 +5,17 @@ type Task = {
   // edit: boolean;
 };
 
-type ToggleTask = (selectedTask: Task) => void;
+type ToggleTask = (selectedTask: number) => void;
 
 type AddTask = (newTask: string) => void;
 
-type DeleteTask = (currentTask: Task) => void;
+type DeleteTask = (currentTask: number) => void;
 
-type EditTask = (editCurrentTask: Task) => void;
+type EditTask = (editCurrentTask: number) => void;
 
 type GetEditText = (TaskId: number, getEditedTask: string) => void;
 
-type SaveEditedTask = (saveEditedTask: Task) => void;
+type SaveEditedTask = (saveEditedTask: number) => void;
 
 type CurrentFilter = (currentFilter: string) => void;
 
