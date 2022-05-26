@@ -41,10 +41,10 @@ export const TaskList: React.FC<TaskListProps> = ({
                 taskList
                   .slice(0)
                   .reverse()
-                  .map((task, i) => {
+                  .map((task) => {
                     return (
                       <Task
-                        key={i}
+                        key={task.id}
                         task={task}
                         taskList={taskList}
                         setTaskList={setTaskList}
