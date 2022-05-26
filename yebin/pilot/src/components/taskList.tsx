@@ -3,28 +3,25 @@ import { Task } from "./task";
 import PropTypes from "prop-types";
 
 import "../styles/taskList.css";
-import data from "../data/data.json";
+// import data from "../data/data.json";
 
 export interface TaskListProps {
   taskList: Array<Task>;
-  toggleTask: ToggleTask;
-  deleteTask: DeleteTask;
-  editTask: EditTask;
-  getEditText: GetEditText;
-  saveEditedTask: SaveEditedTask;
+  setTaskList: Function;
   currentFilter: CurrentFilter;
   filter: string;
+}
+enum Filter {
+  all = "all",
+  completed = "completed",
+  ongoing = "onGoing",
 }
 
 export const TaskList: React.FC<TaskListProps> = ({
   taskList,
-  toggleTask,
-  deleteTask,
+  setTaskList,
   currentFilter,
   filter,
-  editTask,
-  getEditText,
-  saveEditedTask,
 }) => {
   return (
     <div className="TaskListWrapper">
@@ -50,14 +47,7 @@ export const TaskList: React.FC<TaskListProps> = ({
                         key={i}
                         task={task}
                         taskList={taskList}
-                        // setTaskList={setTaskList}
-                        // currentFilter={currentFilter}
-                        // filter={filter}
-                        toggleTask={toggleTask}
-                        deleteTask={deleteTask}
-                        editTask={editTask}
-                        getEditText={getEditText}
-                        saveEditedTask={saveEditedTask}
+                        setTaskList={setTaskList}
                       />
                     );
                   })
@@ -72,19 +62,19 @@ export const TaskList: React.FC<TaskListProps> = ({
             <td className="TableFilter TableFilterText">
               <div className="Round">
                 <label
-                  className={filter === "all" ? "checked" : "not"}
+                  className={filter === Filter.all ? "checked" : "not"}
                   htmlFor="filter"
                 >
                   <input
                     type={"checkbox"}
-                    id="all"
-                    name="all"
-                    value="all"
-                    checked={filter === "all"}
+                    id={Filter.all}
+                    name={Filter.all}
+                    value={Filter.all}
+                    checked={filter === Filter.all}
                     readOnly
                   />
                   <span
-                    onClick={() => currentFilter("all")}
+                    onClick={() => currentFilter(Filter.all)}
                     className="CheckboxFilter"
                   />
                   전체 보기
@@ -95,18 +85,18 @@ export const TaskList: React.FC<TaskListProps> = ({
               <div className="Round">
                 <label
                   htmlFor="filter"
-                  className={filter === "onGoing" ? "checked" : "not"}
+                  className={filter === Filter.ongoing ? "checked" : "not"}
                 >
                   <input
                     type={"checkbox"}
-                    id="onGoing"
-                    name="onGoing"
-                    value="onGoing"
-                    checked={filter === "onGoing"}
+                    id={Filter.ongoing}
+                    name={Filter.ongoing}
+                    value={Filter.ongoing}
+                    checked={filter === Filter.ongoing}
                     readOnly
                   />
                   <span
-                    onClick={() => currentFilter("onGoing")}
+                    onClick={() => currentFilter(Filter.ongoing)}
                     className="CheckboxFilter"
                   />
                   진행중인 항목만 보기
@@ -117,18 +107,18 @@ export const TaskList: React.FC<TaskListProps> = ({
               <div className="Round">
                 <label
                   htmlFor="filter"
-                  className={filter === "completed" ? "checked" : "not"}
+                  className={filter === Filter.completed ? "checked" : "not"}
                 >
                   <input
                     type={"checkbox"}
-                    id="completed"
-                    name="completed"
-                    value="completed"
-                    checked={filter === "completed"}
+                    id={Filter.completed}
+                    name={Filter.completed}
+                    value={Filter.completed}
+                    checked={filter === Filter.completed}
                     readOnly
                   />
                   <span
-                    onClick={() => currentFilter("completed")}
+                    onClick={() => currentFilter(Filter.completed)}
                     className="CheckboxFilter"
                   />
                   완료된 항목만 보기
@@ -141,15 +131,3 @@ export const TaskList: React.FC<TaskListProps> = ({
     </div>
   );
 };
-
-// TaskList.propTypes = {
-//   taskList: PropTypes.arrayOf(Task.propTypes.task).isRequired,
-//   setTaskList: PropTypes.func.isRequired,
-//   toggleTask: PropTypes.func.isRequired,
-//   deleteTask: PropTypes.func.isRequired,
-//   currentFilter: PropTypes.func.isRequired,
-//   filter: PropTypes.string.isRequired,
-//   editTask: PropTypes.func.isRequired,
-//   getEditTask: PropTypes.func.isRequired,
-//   saveEditedTask: PropTypes.func.isRequired,
-// };

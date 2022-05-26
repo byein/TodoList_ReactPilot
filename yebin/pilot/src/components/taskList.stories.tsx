@@ -22,37 +22,31 @@ Default.args = {
     {
       id: 1,
       title: "Task 1",
-      edit: false,
       complete: false,
     },
     {
       id: 2,
       title: "Task 2",
-      edit: false,
       complete: true,
     },
     {
       id: 3,
       title: "Task 3",
-      edit: false,
       complete: false,
     },
     {
       id: 4,
       title: "Task 4",
-      edit: false,
       complete: true,
     },
     {
       id: 5,
       title: "Task 5",
-      edit: false,
       complete: true,
     },
     {
       id: 6,
       title: "Task 6",
-      edit: false,
       complete: true,
     },
   ],

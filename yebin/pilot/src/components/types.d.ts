@@ -2,7 +2,7 @@ type Task = {
   id: number;
   title: string;
   complete: boolean;
-  edit: boolean;
+  // edit: boolean;
 };
 
 type ToggleTask = (selectedTask: Task) => void;

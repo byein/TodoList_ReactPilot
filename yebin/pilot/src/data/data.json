@@ -2,121 +2,101 @@
   {
     "id": 0,
     "title": "Fill gas tank",
-    "complete": false,
-    "edit": false
+    "complete": false
   },
   {
     "id": 1,
     "title": "Give dog a bath",
-    "complete": true,
-    "edit": false
+    "complete": true
   },
   {
     "id": 2,
     "title": "Do laundry",
-    "complete": true,
-    "edit": false
+    "complete": true
   },
   {
     "id": 3,
     "title": "Vacuum floor",
-    "complete": false,
-    "edit": false
+    "complete": false
   },
   {
     "id": 4,
     "title": "Feed cat",
-    "complete": true,
-    "edit": false
+    "complete": true
   },
   {
     "id": 5,
     "title": "Change light bulbs",
-    "complete": false,
-    "edit": false
+    "complete": false
   },
   {
     "id": 6,
     "title": "Go to Store",
-    "complete": true,
-    "edit": false
+    "complete": true
   },
   {
     "id": 7,
     "title": "Fill gas tank",
-    "complete": true,
-    "edit": false
+    "complete": true
   },
   {
     "id": 8,
     "title": "Change linens",
-    "complete": false,
-    "edit": false
+    "complete": false
   },
   {
     "id": 9,
     "title": "Rake leaves",
-    "complete": true,
-    "edit": false
+    "complete": true
   },
   {
     "id": 10,
     "title": "Bake Cookies",
-    "complete": false,
-    "edit": false
+    "complete": false
   },
   {
     "id": 11,
     "title": "Take nap",
-    "complete": true,
-    "edit": false
+    "complete": true
   },
   {
     "id": 12,
     "title": "Read book",
-    "complete": true,
-    "edit": false
+    "complete": true
   },
   {
     "id": 13,
     "title": "Exercise",
-    "complete": false,
-    "edit": false
+    "complete": false
   },
   {
     "id": 14,
     "title": "Give dog a bath",
-    "complete": false,
-    "edit": false
+    "complete": false
   },
   {
     "id": 15,
     "title": "Do laundry",
-    "complete": false,
-    "edit": false
+    "complete": false
   },
   {
     "id": 16,
     "title": "Vacuum floor",
-    "complete": false,
-    "edit": false
+    "complete": false
   },
   {
     "id": 17,
     "title": "Feed cat",
-    "complete": true,
-    "edit": false
+    "complete": true
   },
   {
     "id": 18,
     "title": "Change light bulbs",
-    "complete": false,
-    "edit": false
+    "complete": false
   },
   {
     "id": 19,
     "title": "Go to Store",
-    "complete": false,
-    "edit": false
+    "complete": false
   }
 ]

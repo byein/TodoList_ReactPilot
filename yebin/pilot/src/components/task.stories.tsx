@@ -17,7 +17,6 @@ Default.args = {
     id: 1,
     title: "Test Task",
     complete: false,
-    edit: false,
   },
 };
 
@@ -26,7 +25,6 @@ Archived.args = {
   task: {
     id: 1,
     title: "Test Task",
-    edit: false,
     complete: true,
   },
 };
