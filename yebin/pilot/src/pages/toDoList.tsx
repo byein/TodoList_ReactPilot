@@ -1,5 +1,5 @@
 // import logo from './logo.svg';
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import Header from "../components/header";
 import "../App.css";
 import PropTypes from "prop-types";
@@ -23,26 +23,20 @@ enum Filter {
 
 const ToDoList: React.FC = () => {
   const [taskList, setTaskList] = useState(initialTaskList);
-  const [filtered, setFiltered] = useState(taskList);
   const [filter, setFilter] = useState(Filter.all);
 
-  // toggle during filtering doesn't work well...
-  useEffect(() => {
-    console.log(filter);
-    console.log(taskList);
-    if (filter === Filter.completed) {
-      const completedTaskList = taskList.filter((t) => t.complete === true);
-      setFiltered(completedTaskList);
-    } else if (filter === Filter.ongoing) {
-      const onGoingTaskList = taskList.filter((t) => t.complete === false);
-      setFiltered(onGoingTaskList);
+  // const [filtered, setFiltered] = useState(taskList);
+  const filteredTaskList = useMemo(() => {
+    let filtered;
+    if (filter === Filter.ongoing) {
+      filtered = taskList.filter((t) => !t.complete);
+    } else if (filter === Filter.completed) {
+      filtered = taskList.filter((t) => t.complete);
     } else {
-      setFiltered(taskList);
+      filtered = taskList;
     }
+    return filtered;
   }, [filter, taskList]);
-  // useEffect(() => {
-  //   setFiltered(taskList);
-  // }, [taskList]);
 
   // edit task function (if double clicked, change edit prop)
   const editTask: EditTask = (currentTask) => {
@@ -121,20 +115,13 @@ const ToDoList: React.FC = () => {
   const currentFilter: CurrentFilter = (filterTask) => {
     let activeFilter = filterTask;
     switch (activeFilter) {
-      // case "all":
-      //   setFiltered(taskList);
-      //   setFilter("all");
-      //   return;
       case Filter.completed:
-        setFiltered(taskList.filter((t) => t.complete));
         setFilter(Filter.completed);
         return;
       case Filter.ongoing:
-        setFiltered(taskList.filter((t) => !t.complete));
         setFilter(Filter.ongoing);
         return;
       default:
-        setFiltered(taskList);
         setFilter(Filter.all);
         return;
     }
@@ -147,7 +134,7 @@ const ToDoList: React.FC = () => {
         <div className="TaskListSection">
           <TaskList
             // className="TaskListComponentWrapper"
-            taskList={filtered}
+            taskList={filteredTaskList}
             // setTaskList={setTaskList}
             toggleTask={toggleTask}
             deleteTask={deleteTask}
