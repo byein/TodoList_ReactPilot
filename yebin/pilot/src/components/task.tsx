@@ -13,12 +13,14 @@ export interface TaskProps {
 }
 
 export const Task: React.FC<TaskProps> = ({ task, taskList, setTaskList }) => {
-  // let edit: boolean = false;
   const [edit, setEdit] = useState(false);
+
   // onChange function for update input value
   const onChangeInput = (id: number, getEditedTask: string) => {
     getEditText(id, getEditedTask);
+    // saveEditedTask(task);
   };
+
   // if enter key is pressed, save edited task
   const onKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {
@@ -58,6 +60,7 @@ export const Task: React.FC<TaskProps> = ({ task, taskList, setTaskList }) => {
   const editTask: EditTask = (currentTask) => {
     console.log("double clicked");
     console.log(currentTask);
+    console.log(edit);
     const editTask = taskList.map((task) => {
       if (task === currentTask) {
         setEdit(true);
@@ -85,20 +88,6 @@ export const Task: React.FC<TaskProps> = ({ task, taskList, setTaskList }) => {
     setTaskList(editTask);
   };
 
-  // save edited task function (edit is false, cannot edit while there's no double click)
-  const saveEditedTask: SaveEditedTask = (currentTask) => {
-    const saveEditedTask = taskList.map((task) => {
-      if (task.id === currentTask.id) {
-        setEdit(false);
-        return {
-          ...task,
-        };
-      }
-      return task;
-    });
-    setTaskList(saveEditedTask);
-  };
-
   // toggleTask function (change the status ongoing or complete)
   const toggleTask: ToggleTask = (selectedTaskId) => {
     // setFiltered(taskList);
@@ -120,9 +109,9 @@ export const Task: React.FC<TaskProps> = ({ task, taskList, setTaskList }) => {
   const deleteTask: DeleteTask = (currentTask) => {
     console.log(currentTask);
     const removedList = taskList.filter((t) => t !== currentTask);
-    for (let i = 0; i <= removedList.length - 1; i++) {
-      removedList[i].id = i;
-    }
+    // for (let i = 0; i <= removedList.length - 1; i++) {
+    //   removedList[i].id = i;
+    // }
     setTaskList(removedList);
   };
 
