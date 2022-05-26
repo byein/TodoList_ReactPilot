@@ -31,9 +31,9 @@ const InputBox: React.FC<InputBoxProps> = ({ taskList, setTaskList }) => {
   // onClick function for add button
   const onClickAddBtn = (e: FormEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    id = taskList.length;
+    id = taskList[taskList.length - 1].id;
     const nextTaskList = {
-      id: id++,
+      id: ++id,
       title: title,
       state: "TASK_INBOX",
       complete: false,
