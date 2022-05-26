@@ -1,16 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import { Task } from "./task";
 import PropTypes from "prop-types";
 
 import "../styles/taskList.css";
-// import data from "../data/data.json";
 
 export interface TaskListProps {
   taskList: Array<Task>;
   setTaskList: Function;
-  currentFilter: CurrentFilter;
-  filter: string;
 }
+
 enum Filter {
   all = "all",
   completed = "completed",
@@ -20,9 +18,35 @@ enum Filter {
 export const TaskList: React.FC<TaskListProps> = ({
   taskList,
   setTaskList,
-  currentFilter,
-  filter,
 }) => {
+  const [filter, setFilter] = useState(Filter.all);
+
+  // const [filtered, setFiltered] = useState(taskList);
+  const filteredTaskList = useMemo(() => {
+    let filtered = taskList;
+    if (filter === Filter.ongoing) {
+      filtered = taskList.filter((t) => !t.complete);
+    } else if (filter === Filter.completed) {
+      filtered = taskList.filter((t) => t.complete);
+    }
+    return filtered;
+  }, [filter, taskList]);
+
+  // currentFilter function (find current filter, and set filter and filtered tasklist)
+  const currentFilter: CurrentFilter = (filterTask) => {
+    let activeFilter = filterTask;
+    switch (activeFilter) {
+      case Filter.completed:
+        setFilter(Filter.completed);
+        return;
+      case Filter.ongoing:
+        setFilter(Filter.ongoing);
+        return;
+      default:
+        setFilter(Filter.all);
+        return;
+    }
+  };
   return (
     <div className="TaskListWrapper">
       <table className="TaskTable">
@@ -38,7 +62,7 @@ export const TaskList: React.FC<TaskListProps> = ({
             <td>
               {
                 // show the taskList descending id(sort by recently), index reverse
-                taskList
+                filteredTaskList
                   .slice(0)
                   .reverse()
                   .map((task) => {
@@ -58,7 +82,7 @@ export const TaskList: React.FC<TaskListProps> = ({
 
         <tfoot className="TableFooter">
           <tr className="TableFooterRow">
-            <td className="TaskListCnt">총 {taskList.length}개</td>
+            <td className="TaskListCnt">총 {filteredTaskList.length}개</td>
             <td className="TableFilter TableFilterText">
               <div className="Round">
                 <label
